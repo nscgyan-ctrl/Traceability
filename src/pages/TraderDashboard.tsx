@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState, type ReactNode, type FormEvent } from 'react';
 import { useApp } from '../context/AppContext';
 import { formatCurrency, formatDate, generateInvoiceNumber } from '../utils/helpers';
 import { 
@@ -43,7 +43,7 @@ export default function TraderDashboard() {
   const totalPurchaseValue = purchases.reduce((sum, s) => sum + s.totalAmount, 0);
   const totalSalesValue = mySales.reduce((sum, s) => sum + s.totalAmount, 0);
 
-  const tabs: { id: Tab; label: string; icon: React.ReactNode }[] = [
+  const tabs: { id: Tab; label: string; icon: ReactNode }[] = [
     { id: 'overview', label: 'Overview', icon: <TrendingUp className="w-4 h-4" /> },
     { id: 'inventory', label: 'Inventory', icon: <Package className="w-4 h-4" /> },
     { id: 'purchase', label: 'Purchase', icon: <ArrowDownCircle className="w-4 h-4" /> },
@@ -51,7 +51,7 @@ export default function TraderDashboard() {
     { id: 'invoices', label: 'Invoices', icon: <FileText className="w-4 h-4" /> },
   ];
 
-  const handlePurchase = (e: React.FormEvent<HTMLFormElement>) => {
+  const handlePurchase = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
     const sellerId = form.get('sellerId') as string;
@@ -116,7 +116,7 @@ export default function TraderDashboard() {
     setShowModal(null);
   };
 
-  const handleSell = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSell = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
     const buyerId = form.get('buyerId') as string;

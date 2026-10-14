@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
 import { Stakeholder, ApiaryLocation, MaintenanceLog, Harvest, Sale, Invoice, TraceabilityEntry } from '../types';
 import { generateId } from '../utils/helpers';
 

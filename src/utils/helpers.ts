@@ -1,5 +1,3 @@
-import { v4 as uuidv4 } from 'uuid';
-
 export function generateUniqueId(type: string): string {
   const prefix = type === 'beekeeper' ? 'BK' : type === 'trader' ? 'TR' : 'PR';
   const random = Math.floor(100000 + Math.random() * 900000);
@@ -38,5 +36,5 @@ export function formatDate(dateStr: string): string {
 }
 
 export function generateId(): string {
-  return uuidv4();
+  return Date.now().toString(36) + Math.random().toString(36).substr(2);
 }

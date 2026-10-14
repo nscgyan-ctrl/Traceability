@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState, type ReactNode, type FormEvent } from 'react';
 import { useApp } from '../context/AppContext';
 import { formatCurrency, formatDate, generateBatchId, generateInvoiceNumber } from '../utils/helpers';
 import { 
@@ -29,7 +29,7 @@ export default function BeekeeperDashboard() {
   const totalRemaining = myHarvests.reduce((sum, h) => sum + h.remainingAmount, 0);
   const totalRevenue = mySales.reduce((sum, s) => sum + s.totalAmount, 0);
 
-  const tabs: { id: Tab; label: string; icon: React.ReactNode }[] = [
+  const tabs: { id: Tab; label: string; icon: ReactNode }[] = [
     { id: 'overview', label: 'Overview', icon: <TrendingUp className="w-4 h-4" /> },
     { id: 'apiaries', label: 'Apiaries', icon: <MapPin className="w-4 h-4" /> },
     { id: 'harvests', label: 'Harvests', icon: <Droplets className="w-4 h-4" /> },
@@ -38,7 +38,7 @@ export default function BeekeeperDashboard() {
     { id: 'maintenance', label: 'Maintenance', icon: <ClipboardList className="w-4 h-4" /> },
   ];
 
-  const handleSell = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSell = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
     const harvestId = form.get('harvestId') as string;
@@ -588,7 +588,7 @@ export default function BeekeeperDashboard() {
 }
 
 // Helper Components
-function StatCard({ icon, label, value, color }: { icon: React.ReactNode; label: string; value: string; color: string }) {
+function StatCard({ icon, label, value, color }: { icon: ReactNode; label: string; value: string; color: string }) {
   const colors: Record<string, string> = {
     blue: 'bg-blue-50 text-blue-600',
     amber: 'bg-amber-50 text-amber-600',
@@ -606,7 +606,7 @@ function StatCard({ icon, label, value, color }: { icon: React.ReactNode; label:
   );
 }
 
-function Modal({ title, children, onClose }: { title: string; children: React.ReactNode; onClose: () => void }) {
+function Modal({ title, children, onClose }: { title: string; children: ReactNode; onClose: () => void }) {
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={onClose}>
       <div className="bg-white rounded-2xl shadow-xl max-w-lg w-full max-h-[90vh] overflow-y-auto p-6" onClick={e => e.stopPropagation()}>
@@ -637,7 +637,7 @@ function InputField({ name, label, type = 'text', placeholder = '', required = f
   );
 }
 
-function SubmitButton({ children }: { children: React.ReactNode }) {
+function SubmitButton({ children }: { children: ReactNode }) {
   return (
     <button type="submit" className="w-full py-3 bg-amber-500 text-white rounded-xl hover:bg-amber-600 font-semibold transition-colors">
       {children}
